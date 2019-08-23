@@ -1,5 +1,0 @@
-<template name="83c937b6">
-  <view class="_div data-v-5e0b06c6">
-    <van-button type="primary" class="_van-button data-v-5e0b06c6">主要按钮</van-button>
-  </view>
-</template>

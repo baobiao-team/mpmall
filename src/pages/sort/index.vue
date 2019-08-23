@@ -1,6 +1,6 @@
 <template>
   <div>
-    这是首页
+    这是分类页面
   </div>
 </template>
 
@@ -11,5 +11,4 @@ export default {
 </script>
 
 <style>
-
 </style>

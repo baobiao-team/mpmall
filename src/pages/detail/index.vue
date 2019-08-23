@@ -1,6 +1,6 @@
 <template>
   <div>
-    杩欐槸棣栭〉
+    这是商品详情页面
   </div>
 </template>
 
@@ -11,5 +11,4 @@ export default {
 </script>
 
 <style>
-
 </style>

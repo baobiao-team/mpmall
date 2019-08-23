@@ -1,15 +1,11 @@
 <template>
   <div>
-    这是首页
+    这是购物车
   </div>
 </template>
 
 <script>
-export default {
-
-}
 </script>
 
 <style>
-
 </style>

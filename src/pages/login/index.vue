@@ -1,15 +1,11 @@
 <template>
   <div>
-    这是首页
+    这是登录页面
   </div>
 </template>
 
 <script>
-export default {
-
-}
 </script>
 
 <style>
-
 </style>

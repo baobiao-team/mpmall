@@ -1,87 +1,136 @@
 <template>
-  <div @click="clickHandle">
+  <div>
+    <van-checkbox-group class="card-goods" v-model="checkedGoods">
+    <van-checkbox
+    class="card-goods__item"
+    v-for="item in goods"
+    :key="item.id"
+    :name="item.id">
+    <van-card
+      :title="item.title"
+      :desc="item.desc"
+      :num="item.num"
+      :price="formatPrice(item.price)"
+      :thumb="item.thumb"
+    >
+      <view slot="footer">
+        <van-checkbox v-model="checked">复选框</van-checkbox>
+        <van-stepper v-model="value" min="1" max="5" />
+      </view>
+    </van-card>
+    </van-checkbox>
+    </van-checkbox-group>
+      <!-- 商品1展示 -->
 
-    <div class="userinfo" @click="bindViewTap">
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
-    </div>
 
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
+
+
+
+        <!-- 商品2展示 -->
         <van-card
-          num="2"
-          tag="标签"
+
+          tag="上衣"
           price="10.00"
           desc="描述信息"
           title="商品标题"
-          thumb="{{ imageURL }}"
+
         >
           <view slot="footer">
-            <van-button size="mini">按钮</van-button>
-            <van-button size="mini">按钮</van-button>
+            <van-checkbox v-model="checked">复选框</van-checkbox>
+            <van-stepper v-model="value" min="1" max="5" />
           </view>
         </van-card>
+        <!-- 商品3展示 -->
+        <van-card
 
+          tag="裤子"
+          price="10.00"
+          desc="描述信息"
+          title="商品标题"
+
+        >
+          <div slot="footer">
+              <van-checkbox v-model="checked">复选框</van-checkbox>
+              <van-stepper v-model="value" min="1" max="5" />
+          </div>
+        </van-card>
+
+      <div class="submit">
+        <!-- 提交按钮 -->
+        <van-submit-bar
+          :price="3050"
+          button-text="提交订单"
+          @submit="onSubmit"
+        >
+          <van-checkbox v-model="checked">全选</van-checkbox>
+        </van-submit-bar>
       </div>
-    </div>
+</div>
 
-    <form class="form-container">
-      <input type="text" class="form-control" :value="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-      <van-button>测试按钮</van-button>
 
-    </form>
 
-    <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
-
-    <div class="all">
-        <div class="left">
-        </div>
-        <div class="right">
-        </div>
-    </div>
-  </div>
 </template>
 
 <script>
-import card from '@/components/card'
+import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast } from 'vant';
 
 export default {
+  components: {
+    [Card.name]:Card,
+    [Checkbox.name]:Checkbox,
+    [SubmitBar.name]:SubmitBar,
+    [CheckboxGroup.name]:CheckboxGroup,
+
+  },
   data () {
     return {
-      motto: 'Hello miniprograme',
-      userInfo: {
-        nickName: '购物车',
+      checkedGoods:['1','2','3',],
+      goods:[{
+        id: '1',
+        title: '进口香蕉',
+        desc: '约250g，2根',
+        price: 200,
+        num: 1,
+        thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/2f9a36046449dafb8608e99990b3c205.jpeg'
+      },
+      {
+        id: '2',
+        title: '陕西蜜梨',
+        desc: '约600g',
+        price: 690,
+        num: 1,
+        thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/f6aabd6ac5521195e01e8e89ee9fc63f.jpeg'
+      },
+       {
+        id: '3',
+        title: '美国伽力果',
+        desc: '约680g/3个',
+        price: 2680,
+        num: 1,
+        thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/320454216bbe9e25c7651e1fa51b31fd.jpeg'
+      }]
+      };
+      },
+    computed: {
+    submitBarText() {
+      const count = this.checkedGoods.length;
+      return '结算' + (count ? `(${count})` : '');
+    },
+     totalPrice() {
+          return this.goods.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0), 0);
 
-      }
-    }
-  },
+        },
+        }
 
-  components: {
-    card
-  },
 
   methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      if (mpvuePlatform === 'wx') {
-        mpvue.switchTab({ url })
-      } else {
-        mpvue.navigateTo({ url })
-      }
-    },
-    clickHandle (ev) {
-      console.log('clickHandle:', ev)
-      // throw {message: 'custom test'}
-    }
+    formatPrice(price) {
+          return (price / 100).toFixed(2);
+        },
+        onSubmit() {
+          Toast('点击结算');
+        },
   },
-
-  created () {
-    // let app = getApp()
-  }
 }
 </script>
 
@@ -103,9 +152,7 @@ export default {
   color: #aaa;
 }
 
-.usermotto {
-  margin-top: 150px;
-}
+
 
 .form-control {
   display: block;
@@ -123,17 +170,5 @@ export default {
   content:'';
   clear:both;
 }
-.left{
-  float:left;
-  width:3rem;
-  height:1rem;
-  background-color:red;
-}
 
-.right{
-  float:left;
-  width:4.5rem;
-  height:1rem;
-  background-color:green;
-}
 </style>

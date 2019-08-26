@@ -4,6 +4,7 @@
     "pages/sort/main",
     "pages/cart/main",
     "pages/user/main",
+	 "pages/login/main",
     "pages/detail/main"
   ],
   "window": {

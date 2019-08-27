@@ -11,7 +11,9 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "浦发商城",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle":"dark"
   },
   "tabBar": {
     "color": "#999",

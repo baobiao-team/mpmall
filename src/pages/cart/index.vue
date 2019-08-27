@@ -9,7 +9,7 @@
     <div class="usermotto">
       <van-checkbox-group class='card-goods' v-model='checkedGoods'>
         <van-checkbox class='card-goods_item' v-for = "item in goods" :key="item.id"
-        :name="item.id" @click='clickMe' v-model="checkVal">
+        :name="item.id" @click='clickMe(item)' v-model="item.checkVal">
           <van-card
 
             :tag="item.tag"
@@ -20,7 +20,7 @@
           >
             <view slot="footer">
 
-              <van-stepper v-model="item.value" min="1" max="5" />
+              <van-stepper v-model="value" min="1" max="5"></van-stepper>
 
             </view>
           </van-card>
@@ -60,12 +60,14 @@ export default {
         title:'香蕉',
         desc:'约250g,2根',
         tag:'食品类',
+        checkVal:false,
       },{
         id: '2',
         price:300,
         title:'运动鞋',
         desc:'品牌：耐克',
         tag:'服装类',
+        checkVal:false,
       },
        {
         id: '3',
@@ -73,10 +75,11 @@ export default {
         desc: '约680g/3个',
         price: 2680,
         num: 1,
+        checkVal:false,
         thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/320454216bbe9e25c7651e1fa51b31fd.jpeg'
       }],
 
-      card-goods_item.checkVal:return false;
+
       checked: false,
       userInfo: {
         nickName: '购物车',
@@ -116,8 +119,8 @@ computed: {
       return price.toFixed(2);
     },
 
-    clickMe(){
-            console.log(this.checkVal);
+    clickMe(item){
+            console.log(item.checkVal);
             item.checkVal =!item.checkVal;
             },
     clickAll(){

@@ -49,9 +49,9 @@
      <van-panel>
        <van-goods-action custom-class="goods-action" safe-area-inset-bottom="false">
          <van-goods-action-icon icon="chat-o" text="客服"/>
-         <van-goods-action-icon icon="cart-o" text="购物车" info="5"/>
+         <van-goods-action-icon icon="cart-o" text="购物车" :info="count"  @click="toCart()"/>
          <van-goods-action-icon icon="shop-o" text="店铺"/>
-         <van-goods-action-button text="加入购物车" type="warning"  @click="toCart()"/>
+         <van-goods-action-button text="加入购物车" type="warning"  @click="increment()"/>
        </van-goods-action>
      </van-panel>
    </view>
@@ -81,6 +81,7 @@
         text: '[开学季]此商品8月29日开卖，请提前加入购物车...',
         value:'福建 | 快递0.00',
         number:'1',
+        count:'3',
         category:'运动生活系列',
         describe:'让我陪你记录光辉里程',
         desc:'减震/防滑/耐磨/轻便',
@@ -105,9 +106,13 @@
         //Toast('点击按钮');
       },
       toCart() {
+        console.log("aaa")
        const url = "../cart/main"
-       wx.navigateTo({url})
-      }
+       wx.switchTab({url})
+      },
+       increment () {
+       this.count++
+     }
     }
   }
 

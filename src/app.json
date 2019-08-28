@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/index/main",
     "pages/sort/main",
+    "pages/index/main",
+    
     "pages/cart/main",
     "pages/user/main",
 	 "pages/login/main",
     "pages/detail/main"
   ],
   "window": {
-    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "浦发商城",
     "navigationBarTextStyle": "black",

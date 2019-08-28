@@ -114,7 +114,7 @@ export default {
 	      },
         {
           goodId: 8,
-          name: '【8月28日福临门超级品牌日】“福”满中秋，放心粮油低至199减100、领券满199再减20，更多优惠',
+          name: '“福”满中秋，放心粮油低至199减100、更多优惠',
           url: 'bill',
           imageurl: 'img14.360buyimg.com/n7/jfs/t1/7965/24/3560/849892/5bd7c3bfE59835aa6/d3dfc2021dd9f836.jpg',
           newprice: "348.00",
@@ -124,7 +124,8 @@ export default {
           typeName: "超市",
           dec1:"14万评论 97%好评",
           dec2:"",
-          tag:"自营"
-        },
+          tag:"自营",
+          tag2: "199减100"
+        }
         ],
 };

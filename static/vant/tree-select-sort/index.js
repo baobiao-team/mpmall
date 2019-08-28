@@ -36,7 +36,8 @@ VantComponent({
         autoplay: false,
         interval: 5000,
         duration: 1000,
-        imageURL: 'https://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg'
+        imageURL: 'https://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg',
+        itemSize: 0
     },
     watch: {
         items() {
@@ -83,12 +84,12 @@ VantComponent({
             //console.log("getSwiperHigth():" + this.getSwiperHigth());
             console.log("updateMainHeight maxHeight:"+maxHeight);
             console.log("updateMainHeight this.data.maxHeight:"+this.data.maxHeight);
-          this.set({ mainHeight: this.data.maxHeight });
+            this.set({ mainHeight: this.data.maxHeight });
         },
         // 更新子项列表高度，根据可展示的最大高度和当前子项列表的高度决定
         updateItemHeight(subItems) {
-            const itemHeight = Math.min(subItems.length * ITEM_HEIGHT,this.data.maxHeight);
-            return this.set({itemHeight:itemHeight+this.getSwiperHigth()});
+            const itemHeight = Math.max(subItems.length * ITEM_HEIGHT,this.data.maxHeight);
+            return this.set({itemHeight:itemHeight});
         },
         getSwiperHigth(){
           var titleHeight = 150;
@@ -96,7 +97,7 @@ VantComponent({
           query.select('.swi').boundingClientRect(function (res) {
             //得到标题的高度
             titleHeight = res.height;
-            
+
           }).exec();
           return titleHeight;
         }

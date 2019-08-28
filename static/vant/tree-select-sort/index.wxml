@@ -38,18 +38,18 @@ module.exports.isActive = isActive;
     class="van-tree-select__content"
     style="height: {{ itemHeight }}px"
   >
-  <!-- <swiper v-if="imgUrls.length > 0" indicator-dots="{{indicatorDots}}"
-      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <swiper v-if="imgUrls.length > 0" indicator-dots="imgUrls.length"
+      autoplay="true" interval="5000" duration="1000" class= "swi">
       <block wx:for="{{imgUrls}}">
-        <swiper-item>
+        <swiper-item class= "swi">
           <image src="{{item}}" class="slide-image" width="355" height="150"/>
         </swiper-item>
       </block>
-    </swiper> -->
+    </swiper>
     <view
       wx:for="{{ subItems }}"
       wx:key="id"
-      class="van-ellipsis van-hairline--bottom content-item-class {{ utils.bem('tree-select__item', { active: tsUtil.isActive(activeId, item.id), disabled: item.disabled }) }} {{ tsUtil.isActive(activeId, item.id) ? 'content-active-class' : '' }} {{ item.disabled ? 'content-disabled-class' : '' }}"
+      class="van-ellipsis van-hairline--bottom content-item-class"
       data-item="{{ item }}"
       bind:tap="onSelectItem"
     >

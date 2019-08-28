@@ -3,5 +3,5 @@
     "van-button": "/static/vant/button/index",
     "van-tree-select":"/static/vant/tree-select-sort/index"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": false
 }

@@ -50,7 +50,8 @@
         mainActiveIndex: 0,
         activeId: 0,
         changed: 0,
-        pageUrls:[]
+        pageUrls:[],
+        data:{}
       }
     },
 
@@ -83,10 +84,18 @@
       //this.activeId从1开始，而不是从0开始！
       onClickItem(event) {
         console.log("onClickItem:"+JSON.stringify(event));
-        this.activeId=event.mp.detail.id
+        this.activeId=event.mp.detail.id;
         console.log('this.activeId: ',this.activeId);
-        wx.navigateTo({url: this.pageUrls[this.activeId>0? this.activeId-1:this.activeId]})
-        console.log('********************');
+        //wx.navigateTo({url: this.pageUrls[this.activeId>0? this.activeId-1:this.activeId]});
+
+
+        let test = {a:"a",b:"b"};
+        this.data = JSON.stringify(test);
+        console.log(JSON.stringify(test));
+
+        wx.navigateTo({
+           url: '/pages/detail/main?text=${this.data}'
+        });
       },
       computeScreen(){
         this.maxHigth = 600;

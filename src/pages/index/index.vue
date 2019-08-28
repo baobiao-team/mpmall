@@ -4,20 +4,22 @@
         :value="value"
         placeholder="请输入搜索关键词"
         use-action-slot
-        @change="onChange"
-        @search="onSearch"
+        @change="onChange1"
+        @search="onSearch1"
       >
-        <view slot="action" @tap="onSearch">搜索</view>
+        <view slot="action" @tap="onSearch1" class = "search-action">搜索</view>
       </van-search>
 
-    <van-tabs>
-        <van-tab title="今日推荐"></van-tab>
-        <van-tab title="时尚"></van-tab>
-        <van-tab title="美妆"></van-tab>
-        <van-tab title="国际"></van-tab>
-        <van-tab title="母婴"></van-tab>
-        <van-tab title="居家"></van-tab>
-    </van-tabs>
+    <van-tabs active="1" @change="onChange2">
+        <van-tab
+            v-for="(item, index) in tabs"
+            :key="index"
+            :title="item">
+            <view class="content">
+
+            </view>
+        </van-tab>
+   </van-tabs>
 
     <view>
        <Swiper images = "images"/>
@@ -36,6 +38,7 @@ export default {
 
   data(){
     return{
+      tabs: ['今日推荐', '数码', '美妆', '手机', '美食', '户外'],
       value: '',
 
      }
@@ -51,14 +54,28 @@ export default {
       }
     },
   },
+
+    onChange2(event) {
+          wx.showToast({
+            title: `切换到标签 ${event.mp.detail.index + 1}`,
+            icon: 'none'
+          });
+        },
   computed: {}
 }
 
 </script>
 
 <style scoped>
-van-search {
-  border-radius: 2px !important;
+
+
+
+.search-action {
+  box-sizing: border-box;
+  border-radius: 20px;
+  width: 70px;
+  text-align: center;
+  background-color: #f7f8fa;
 }
 
 

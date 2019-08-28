@@ -4,6 +4,7 @@
      "van-cell-group":"/static/vant/cell-group/index",
      "van-field":"/static/vant/field/index",
      "van-checkbox-group":"/static/vant/checkbox-group/index",
-     "van-checkbox":"/static/vant/checkbox/index"
+     "van-checkbox":"/static/vant/checkbox/index",
+     "van-toast":"/static/vant/toast/index"
   }
 }

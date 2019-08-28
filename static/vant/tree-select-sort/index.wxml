@@ -33,16 +33,16 @@ module.exports.isActive = isActive;
       {{ item.text }}
     </view>
   </scroll-view>
+  
   <scroll-view
     scroll-y
     class="van-tree-select__content"
-    style="height: {{ itemHeight }}px"
-  >
+    style="height: {{ itemHeight }}px">
     <swiper v-if="imgUrls.length > 0" indicator-dots="imgUrls.length"
-      autoplay="true" interval="5000" duration="1000" class= "swi">
+      autoplay="true" interval="5000" duration="1000" class="swi">
       <block wx:for="{{imgUrls}}">
         <swiper-item class= "swi">
-          <image src="{{item}}" class="slide-image" width="355" height="150"/>
+          <image src="{{item}}" mode="widthFix" class="scale-down"/>
         </swiper-item>
       </block>
     </swiper>
@@ -54,13 +54,17 @@ module.exports.isActive = isActive;
       bind:tap="onSelectItem"
     >
           <van-card
-            num="2"
-            price="2.00"
-            desc="描述信息"
-            title="2019秋冬新款男"
-            :thumb="imageURL"
-          />
-
+            num=""
+            price="{{ item.newprice }}"
+            origin-price="{{ item.oldprice }}"
+            desc="{{ item.dec1 }}"
+            title="{{ item.name }}"
+            thumb="{{ item.imageurl }}"
+            >
+          <div slot="tags">
+            <van-tag plain type="danger">{{ item.tag }}</van-tag>
+          </div>
+        </van-card>
     </view>
   </scroll-view>
 </view>

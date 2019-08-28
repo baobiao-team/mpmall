@@ -75,5 +75,12 @@
   line-height: 24px
 }
 .swi {
-  width: 100%;
+  position: relative;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+.scale-down {
+  object-fit: scale-down;
+  overflow:hidden;
 }

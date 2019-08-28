@@ -19,34 +19,7 @@
   export default {
     data () {
       return {
-        items: [
-          {
-            // 导航名称
-            text: '所有组件',
-            // 该导航下所有的可选项
-            children: [...config.pro1,...config.pro2,...config.pro3,...config.pro4,...config.pro5,...config.pro6]
-          }, {
-            // 导航名称
-            text: config.pro1Name,
-            // 该导航下所有的可选项
-            children: config.pro1
-          }, {
-            text: config.pro2Name,
-            children: config.pro2
-          }, {
-            text: config.pro3Name,
-            children: config.pro3
-          }, {
-            text: config.pro4Name,
-            children: config.pro4
-          }, {
-            text: config.pro5Name,
-            children: config.pro5
-          }, {
-            text: config.pro6Name,
-            children: config.pro6
-          }
-        ],
+        items: [],
         mainActiveIndex: 0,
         activeId: 0,
         changed: 0,
@@ -58,14 +31,6 @@
     components: {
       card
     },
-    onLoad() {
-      console.log("father onLoad:");
-
-      let screenHeight = wx.getSystemInfoSync().windowHeight;
-      this.changed = screenHeight;
-      console.log("screenHeight:"+screenHeight);
-
-    },
     onPullDownRefresh() {
         // 下拉刷新
         console.log("onPullDownRefresh");
@@ -74,7 +39,39 @@
         // 上拉加载更多
        console.log("onReachBottom");
     },
+    onLoad() {
+      console.log("father onLoad:"+config.goodsWelfareItems);
+      this.dateParse();
+      let screenHeight = wx.getSystemInfoSync().windowHeight;
+      this.changed = screenHeight;
+      console.log("screenHeight:"+screenHeight);
+
+    },
     methods: {
+      dateParse(){
+        console.log("aaaaa");
+        var map = new Map();
+        //首先找到所有分类
+        config.goodsWelfareItems.forEach((item)=>{
+          //console.log(item.name);
+          map.set(item.type,item.typeName);
+        })
+
+        map.forEach((value, key) => {
+          let tempList = [];
+          console.log("map:"+key);
+          config.goodsWelfareItems.forEach((object)=>{
+            if(object.type === key){
+              tempList.push(object);
+            }
+          })
+          this.items.push({"text":value, "children": tempList});
+          console.log(JSON.stringify(this.items));
+        })
+
+        //根据分类加入相应位置
+        //this.items.add({})
+      },
       //左侧导航点击时，触发的事件
       onClickNav(event) {
         console.log("onclickNav:"+JSON.stringify(event));
@@ -85,16 +82,14 @@
       onClickItem(event) {
         console.log("onClickItem:"+JSON.stringify(event));
         this.activeId=event.mp.detail.id;
-        console.log('this.activeId: ',this.activeId);
         //wx.navigateTo({url: this.pageUrls[this.activeId>0? this.activeId-1:this.activeId]});
 
 
-        let test = {a:"a",b:"b"};
-        this.data = JSON.stringify(test);
-        console.log(JSON.stringify(test));
+        this.data = event.mp.detail;
+        console.log(JSON.stringify(this.data));
 
         wx.navigateTo({
-           url: '/pages/detail/main?text=${this.data}'
+           url: '/pages/detail/main?text=${JSON.stringify(this.data)}'
         });
       },
       computeScreen(){

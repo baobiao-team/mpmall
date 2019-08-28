@@ -1,5 +1,5 @@
 import { VantComponent } from '../common/component';
-const ITEM_HEIGHT = 150;
+const ITEM_HEIGHT = 118;
 VantComponent({
     classes: [
         'main-item-class',
@@ -29,8 +29,8 @@ VantComponent({
         itemHeight: 0,
         imgUrls: [
             'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
-            'https://a2.vimage1.com/upload/flow/2017/11/07/73/15100619325212.jpg',
-            'https://b.vimage1.com/upload/mst/2017/11/04/139/23b96f0e89abed2d9415e848fc3715ff_604x290_80.jpg'
+          'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
+
         ],
         indicatorDots: false,
         autoplay: false,
@@ -46,7 +46,6 @@ VantComponent({
         },
         maxHeight() {
             this.updateItemHeight(this.data.subItems);
-            console.log("maxHeight changed"+JSON.stringify(this.data.subItems));
             this.updateMainHeight();
         },
         mainActiveIndex: 'updateSubItems'
@@ -81,14 +80,25 @@ VantComponent({
         updateMainHeight() {
             const { items = [], subItems = [] } = this.data;
             const maxHeight = Math.max(items.length * ITEM_HEIGHT, subItems.length * ITEM_HEIGHT);
+            //console.log("getSwiperHigth():" + this.getSwiperHigth());
             console.log("updateMainHeight maxHeight:"+maxHeight);
             console.log("updateMainHeight this.data.maxHeight:"+this.data.maxHeight);
-            this.set({ mainHeight: Math.min(maxHeight, this.data.maxHeight) });
+          this.set({ mainHeight: this.data.maxHeight });
         },
         // 更新子项列表高度，根据可展示的最大高度和当前子项列表的高度决定
         updateItemHeight(subItems) {
-            const itemHeight = Math.min(subItems.length * ITEM_HEIGHT, this.data.maxHeight);
-            return this.set({ itemHeight });
+            const itemHeight = Math.min(subItems.length * ITEM_HEIGHT,this.data.maxHeight);
+            return this.set({itemHeight:itemHeight+this.getSwiperHigth()});
+        },
+        getSwiperHigth(){
+          var titleHeight = 150;
+          let query = wx.createSelectorQuery().in(this)
+          query.select('.swi').boundingClientRect(function (res) {
+            //得到标题的高度
+            titleHeight = res.height;
+            
+          }).exec();
+          return titleHeight;
         }
     }
 });

@@ -1,177 +1,155 @@
 <template>
   <div>
-    <!-- 标题展示 -->
-    <div class="userinfo" @click="bindViewTap">
+    <van-checkbox-group class="card-goods" v-model="checkedGoods"  @change="onChange" :value="result" data-key="result">
+      <van-checkbox
+        class="card-goods__item"
+        v-for="item in goods"
+        :key="item.id"
+        :name="item.id"
 
-        <card :text="userInfo.nickName"></card>
-    </div>
+      >
+        <van-card
+          :tag="item.tag"
+          :title="item.title"
+          :desc="item.desc"
+          :price='item.price'
+          :thumb="item.thumb"
+          :num="item.num"
 
-    <div class="usermotto">
-      <van-checkbox-group class='card-goods' v-model='checkedGoods'>
-        <van-checkbox class='card-goods_item' v-for = "item in goods" :key="item.id"
-        :name="item.id" @click='clickMe(item)' v-model="item.checkVal">
-          <van-card
+        />
+        <view slot="footer">
 
-            :tag="item.tag"
-            :price = "item.price"
-            :title="item.title"
-            :desc="item.desc"
-            :thumb="item.thumb"
-          >
-            <view slot="footer">
+          <van-stepper v-model="value" min="1" max="5"></van-stepper>
 
-              <van-stepper v-model="value" min="1" max="5"></van-stepper>
-
-            </view>
-          </van-card>
-        </van-checkbox>
-
-      </van-checkbox-group>
-      </div>
-
-      <div class="submit">
-        <!-- 提交按钮 -->
-        <van-submit-bar
-          :price="totalPrice"
-          :disabled="!checkedGoods.length"
-          :button-text="submitBarText"
-          @submit="onSubmit"
-        >
-          <van-checkbox v-model="checked" @click='clickAll'>全选</van-checkbox>
-        </van-submit-bar>
-      </div>
-
+        </view>
+      </van-checkbox>
+    </van-checkbox-group>
+    <van-submit-bar
+      :price="totalPrice*100"
+      :disabled="!checkedGoods.length"
+      :button-text="submitBarText"
+      @submit="onSubmit"
+    />
   </div>
-
-
 </template>
 
 <script>
-import card from '@/components/card'
 
 export default {
-  data () {
+
+  data() {
     return {
       checkedGoods: ['1', '2', '3'],
-      motto: '您好！',
-      goods:[{
+      goods: [{
         id: '1',
-        price:10,
-        title:'香蕉',
-        desc:'约250g,2根',
+        title: '进口香蕉',
+        desc: '约250g，2根',
+        price: 19.99,
+        num: 1,
+        thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/2f9a36046449dafb8608e99990b3c205.jpeg',
         tag:'食品类',
-        checkVal:false,
-      },{
+
+      }, {
         id: '2',
-        price:300,
-        title:'运动鞋',
-        desc:'品牌：耐克',
-        tag:'服装类',
-        checkVal:false,
-      },
-       {
+        title: '陕西蜜梨',
+        desc: '约600g',
+        price: 30.00,
+        num: 1,
+        tag:'食品类',
+
+        thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/f6aabd6ac5521195e01e8e89ee9fc63f.jpeg'
+      }, {
         id: '3',
         title: '美国伽力果',
         desc: '约680g/3个',
-        price: 2680,
+        price: 5000,
         num: 1,
-        checkVal:false,
+        tag:'食品类',
+
         thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/320454216bbe9e25c7651e1fa51b31fd.jpeg'
       }],
-
-
-      checked: false,
-      userInfo: {
-        nickName: '购物车',
-      }
-    }
+        result: [],
+    };
   },
-  components: {
-    card,
-
-  },
-computed: {
+  computed: {
     submitBarText() {
-      const count = this.checkedGoods.length;
+      // const count = this.checkedGoods.length;
+      const count = this.result.length;
       return '结算' + (count ? `(${count})` : '');
-
     },
     totalPrice() {
-      return this.goods.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0), 0);
-      console.log(total);
-      console.log(item);
-      item.value()
-      console.log(this.checkedGoods.indexOf(item.id));
+      console.log(this.goods.reduce((total, item) => total + (this.checkedGoods.indexOf(item.id) !== -1 ? item.price : 0), 0))
+      return this.goods.reduce((total, item) => total + (this.result.indexOf(item.id) !== -1 ? item.price : 0), 0);
+    },
 
-    }
   },
   methods: {
+//     clickMe(){
+//
+//       console.log(this.checkVal);
+//       this.checkVal =!this.checkVal;
+//
+//     },
+     formatPrice(price) {
+       // let datas = [];
+       // return this.goods.filter(good => {
+       //   good.price = (good.price/100).toFixed(2)
+       //   return good
+       // })
+       console.log(price);
 
-    bindViewTap () {
-      const url = '../logs/main'
-      if (mpvuePlatform === 'wx') {
-        mpvue.switchTab({ url })
-      } else {
-        mpvue.navigateTo({ url })
-      }
-    },
-    formatPrice(price){
-      return price.toFixed(2);
+       return ((price / 100).toFixed(2))
+     },
+     onChange(event) {
+      const {key} = event.mp.currentTarget.dataset;
+      //this.setData({[key]: event.mp.detail});
+      this[key]=event.mp.detail;
+
+      console.log('result: ',this.result.sort())
     },
 
-    clickMe(item){
-            console.log(item.checkVal);
-            item.checkVal =!item.checkVal;
-            },
-    clickAll(){
-      console.log(this.checkVal);
-      this.id.checkVal =!this.id.checkVal;
-      console.log(this.checked);
-      this.checked=!this.checked;
+
+
+    toggle(event) {
+      const {name} = event.mp.currentTarget.dataset;
+      //const box = this.selectComponent(`.checkboxes-${name}`);
+      const box =this.$mp.page.selectComponent(`.checkboxes-${name}`)
+      console.log('box: ',box);
+      box.toggle();
+    },
+
+
+
+    onSubmit() {
+      Toast('点击结算');
     }
-  },
-
-  created () {
-    // let app = getApp()
   }
-}
+};
 </script>
 
-<style scoped>
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+<style lang="less">
+.card-goods {
+  padding: 10px 0;
+  background-color: #fff;
+  &__item {
+    position: relative;
+    background-color: #fafafa;
+    .van-checkbox__label {
+      width: 100%;
+      height: auto; // temp
+      padding: 0 10px 0 15px;
+      box-sizing: border-box;
+    }
+    .van-checkbox__icon {
+      top: 50%;
+      left: 10px;
+      z-index: 1;
+      position: absolute;
+      margin-top: -10px;
+    }
+    .van-card__price {
+      color: #f44;
+    }
+  }
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-
-
-.form-control {
-  display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-}
-.all{
-  width:7.5rem;
-  height:1rem;
-  background-color:blue;
-}
-.all:after{
-  display:block;
-  content:'';
-  clear:both;
-}
-
 </style>

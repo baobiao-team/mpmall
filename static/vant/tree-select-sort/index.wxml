@@ -22,7 +22,7 @@ module.exports.isActive = isActive;
   class="van-tree-select"
   style="height: {{ mainHeight }}px"
 >
-  <scroll-view scroll-y class="van-tree-select__nav"       style="height: {{ itemHeight }}px">
+  <scroll-view scroll-y class="van-tree-select__nav">
     <view
       wx:for="{{ items }}"
       wx:key="index"

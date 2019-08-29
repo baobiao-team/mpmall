@@ -88,7 +88,7 @@ VantComponent({
         },
         // 更新子项列表高度，根据可展示的最大高度和当前子项列表的高度决定
         updateItemHeight(subItems) {
-            const itemHeight = Math.max(subItems.length * ITEM_HEIGHT,this.data.maxHeight);
+            const itemHeight = Math.min(subItems.length * ITEM_HEIGHT,this.data.maxHeight);
             return this.set({itemHeight:itemHeight});
         },
         getSwiperHigth(){

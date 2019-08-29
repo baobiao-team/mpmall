@@ -87,12 +87,11 @@
         this.activeId=event.mp.detail.id;
         //wx.navigateTo({url: this.pageUrls[this.activeId>0? this.activeId-1:this.activeId]});
 
-
         this.data = event.mp.detail;
         console.log(JSON.stringify(this.data));
 
         wx.navigateTo({
-           url: '/pages/detail/main?text=${JSON.stringify(this.data)}'
+           url: '/pages/detail/main?text='+JSON.stringify(this.data)
         });
       },
       computeScreen(){

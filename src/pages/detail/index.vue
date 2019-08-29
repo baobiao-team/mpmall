@@ -44,7 +44,6 @@
         <text class="goodsbottom" style = "visibility: hidden;">已经到底啦</text>
       </view>
 
-
    <!-- 商品导航 -->
    <view>
      <van-panel>

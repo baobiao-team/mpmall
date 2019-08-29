@@ -38,7 +38,7 @@ module.exports.isActive = isActive;
     scroll-y
     class="van-tree-select__content"
     style="height: {{ itemHeight }}px">
-    <swiper v-if="isShowSwi" indicator-dots="imgUrls.length"
+    <swiper wx:if="{{ subItems.length > 6 }}" indicator-dots="imgUrls.length"
       autoplay="true" interval="5000" duration="1000" class="swi">
       <block wx:for="{{imgUrls}}">
         <swiper-item class= "swi">

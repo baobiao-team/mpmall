@@ -203,7 +203,6 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 14,
       name: '微星（MSI）X570系列电竞游戏电脑主板（AMD X570/Socket AM4） X570-A PRO',
@@ -219,7 +218,6 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 15,
       name: '联想拯救者Y9000K 2019款酷睿i7 设计师游戏本17.3英寸144hz电竞屏高色域游戏笔记本 定制版：i7-9750 32G 1T固态+1T机械 RTX2060 6G独显',
@@ -235,7 +233,6 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 16,
       name: 'ikbc typemaster系列 X410 108键 单背光 短键程矮轴机械键盘',
@@ -251,7 +248,6 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 17,
       name: '朗科（Netac）512GB SSD固态硬盘 SATA3.0接口 超光N550S/一款非常适合升级的产品',
@@ -267,7 +263,6 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 18,
       name: '坚果（JmGO）J9 投影仪家用 投影机（1080P真高清 远场AI语音 1850ANSI流明 动态交互体验 3D侧投 运动补偿）',

@@ -56,7 +56,13 @@
           //console.log(item.name);
           map.set(item.type,item.typeName);
         })
-
+        //添加全部分类
+        let allList = [];
+        config.goodsWelfareItems.forEach((object)=>{
+            allList.push(object);
+        })
+        this.items.push({"text":"全部", "children": allList});
+        //根据分类加入相应位置
         map.forEach((value, key) => {
           let tempList = [];
           console.log("map:"+key);
@@ -68,9 +74,6 @@
           this.items.push({"text":value, "children": tempList});
           console.log(JSON.stringify(this.items));
         })
-
-        //根据分类加入相应位置
-        //this.items.add({})
       },
       //左侧导航点击时，触发的事件
       onClickNav(event) {

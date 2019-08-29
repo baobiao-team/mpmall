@@ -50,11 +50,14 @@
 .van-card__desc,
 .van-card__title {
   word-break: break-all;
+  display:block;
+  white-space: pre-line;
 }
 
 .van-card__title {
   font-weight: 700;
-  line-height: 16px
+  line-height: 16px;
+  word-break:break-all;
 }
 
 .van-card__desc {

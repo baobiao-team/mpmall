@@ -14,7 +14,6 @@ function isActive (activeList, itemId) {
     return activeList === itemId;
   }
 }
-
 module.exports.isActive = isActive;
 </wxs>
 
@@ -33,12 +32,12 @@ module.exports.isActive = isActive;
       {{ item.text }}
     </view>
   </scroll-view>
-  
+
   <scroll-view
     scroll-y
     class="van-tree-select__content"
     style="height: {{ itemHeight }}px">
-    <swiper v-if="imgUrls.length > 0" indicator-dots="imgUrls.length"
+    <swiper wx:if="{{ subItems.length > 5 }}" indicator-dots="imgUrls.length"
       autoplay="true" interval="5000" duration="1000" class="swi">
       <block wx:for="{{imgUrls}}">
         <swiper-item class= "swi">
@@ -62,7 +61,8 @@ module.exports.isActive = isActive;
             thumb="{{ item.imageurl }}"
             >
           <div slot="tags">
-            <van-tag plain type="danger">{{ item.tag }}</van-tag>
+            <van-tag wx:if="{{ item.tag }}" type="danger">{{ item.tag }}</van-tag>
+            <van-tag style="margin-left: 5px;" wx:if="{{ item.tag2 }}" plain type="danger">{{ item.tag2 }}</van-tag>
           </div>
         </van-card>
     </view>

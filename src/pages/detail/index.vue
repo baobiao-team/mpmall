@@ -1,10 +1,10 @@
 <template>
   <div>
-<!--      <van-panel >
+     <van-panel >
         <van-notice-bar
            :text="text"
            left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png"/>
-      </van-panel> -->
+      </van-panel>
       <!-- 商品轮播 -->
       <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
           <block v-for="(item, index) in images" :key="index">
@@ -36,10 +36,14 @@
       </van-panel>
       <van-panel title="商品参数"   :desc="desc">
       </van-panel>
-      <div class="goodsbottom">已经到底啦</div>
-      <div style = "visibility: hidden;">已经到底啦</div>
-      <div style = "visibility: hidden;">已经到底啦</div>
-      <div style = "visibility: hidden;">已经到底啦</div>
+
+      <view class = "viewbottom">
+        <text class="goodsbottom">已经到底啦...</text>
+        <text class="goodsbottom" style = "visibility: hidden;">已经到底啦</text>
+        <text class="goodsbottom" style = "visibility: hidden;">已经到底啦</text>
+        <text class="goodsbottom" style = "visibility: hidden;">已经到底啦</text>
+      </view>
+
    <!-- 商品导航 -->
    <view>
      <van-panel>
@@ -100,7 +104,10 @@
         //Toast('点击按钮');
       },
       toCart() {
-       const url = "../cart/main"
+       let goods={"goodsName":this.goodsName,"imageUrl":this.images[0].url,"goodsPrice":this.goodsPrice}
+       console.log(JSON.stringify(goods))
+       const url = '../cart/main?goods='+JSON.stringify(goods)
+       console.log(url)
        wx.switchTab({url})
       },
        increment () {
@@ -110,7 +117,7 @@
     onLoad(option) {
         var that=this
           let arr = JSON.parse(option.text)
-           console.log(option.text)
+          // console.log(option.text)
            this.goodsName=arr.name
            this.images[0].url=arr.imageurl
            this.images[1].url=arr.imageurl
@@ -150,6 +157,7 @@
     text-align:right;
   }
   .goodsPrice{
+    margin-top: 10px;
     margin-left: 5px;
     font-size:.5rem;
     color:#ff3849;
@@ -173,14 +181,22 @@
     background: #fff;
   }
   .swiper {
-  /* height: 376rpx !important; */
+    height: 500rpx;
     width: 100%;
  }
  swiper-item image {
-   height: 100%;
+   height: 500rpx;
+   width: 600rpx;
+   margin-left: 80rpx;
  }
 .goodsbottom{
   font-size:.3rem;
-  text-align:center;
+ }
+ .viewbottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
  }
 </style>

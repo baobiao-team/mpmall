@@ -24,7 +24,15 @@
         activeId: 0,
         changed: 0,
         pageUrls:[],
-        data:{}
+        data:{},
+        imgs: [
+            'http://mss.sankuai.com/v1/mss_51a7233366a4427fa6132a6ce72dbe54/newsPicture/05558951-de60-49fb-b674-dd906c8897a6',
+            'http://mss.sankuai.com/v1/mss_51a7233366a4427fa6132a6ce72dbe54/coursePicture/0fbcfdf7-0040-4692-8f84-78bb21f3395d',
+        ],
+        imgs2:[
+          'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
+          'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
+        ]
       }
     },
 
@@ -61,7 +69,7 @@
         config.goodsWelfareItems.forEach((object)=>{
             allList.push(object);
         })
-        this.items.push({"text":"全部", "children": allList});
+        this.items.push({"text":"全部", "children": allList,"imgs":this.imgs2});
         //根据分类加入相应位置
         map.forEach((value, key) => {
           let tempList = [];
@@ -71,7 +79,7 @@
               tempList.push(object);
             }
           })
-          this.items.push({"text":value, "children": tempList});
+          this.items.push({"text":value, "children": tempList,"imgs":this.imgs});
           console.log(JSON.stringify(this.items));
         })
       },

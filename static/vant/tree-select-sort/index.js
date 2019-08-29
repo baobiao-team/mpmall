@@ -29,8 +29,7 @@ VantComponent({
         itemHeight: 0,
         imgUrls: [
             'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
-          'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
-
+            'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
         ],
         indicatorDots: false,
         autoplay: false,
@@ -75,6 +74,9 @@ VantComponent({
             const { items, mainActiveIndex } = this.data;
             const { children = [] } = items[mainActiveIndex] || {};
             this.updateItemHeight(children);
+            if(items[mainActiveIndex].imgs){
+               this.set({ imgUrls : items[mainActiveIndex].imgs});
+            }
             return this.set({ subItems: children });
         },
         // 更新组件整体高度，根据最大高度和当前组件需要展示的高度来决定

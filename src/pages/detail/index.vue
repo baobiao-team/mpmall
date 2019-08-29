@@ -37,7 +37,6 @@
       <van-panel title="商品参数"   :desc="desc">
       </van-panel>
 
-
       <view class = "viewbottom">
         <text class="goodsbottom">已经到底啦...</text>
         <text class="goodsbottom" style = "visibility: hidden;">已经到底啦</text>

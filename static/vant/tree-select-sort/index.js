@@ -82,8 +82,8 @@ VantComponent({
             const { items = [], subItems = [] } = this.data;
             const maxHeight = Math.max(items.length * ITEM_HEIGHT, subItems.length * ITEM_HEIGHT);
             //console.log("getSwiperHigth():" + this.getSwiperHigth());
-            console.log("updateMainHeight maxHeight:"+maxHeight);
-            console.log("updateMainHeight this.data.maxHeight:"+this.data.maxHeight);
+            //console.log("updateMainHeight maxHeight:"+maxHeight);
+            //console.log("updateMainHeight this.data.maxHeight:"+this.data.maxHeight);
             this.set({ mainHeight: this.data.maxHeight });
         },
         // 更新子项列表高度，根据可展示的最大高度和当前子项列表的高度决定

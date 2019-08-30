@@ -9,7 +9,7 @@
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "浦发商城",
+    "navigationBarTitleText": "mp商城",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,
     "backgroundTextStyle":"dark"

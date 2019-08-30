@@ -20,7 +20,7 @@
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "wxeeee0099549db6ef",
-	"projectname": "spdbmall",
+	"projectname": "mpmall",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

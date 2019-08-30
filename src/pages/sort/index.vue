@@ -91,9 +91,8 @@
       //右侧选择项被点击时，会触发的事件
       //this.activeId从1开始，而不是从0开始！
       onClickItem(event) {
-        console.log("onClickItem:"+JSON.stringify(event));
+
         this.activeId=event.mp.detail.id;
-        //wx.navigateTo({url: this.pageUrls[this.activeId>0? this.activeId-1:this.activeId]});
 
         this.data = event.mp.detail;
         console.log(JSON.stringify(this.data));

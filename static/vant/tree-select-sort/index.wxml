@@ -14,6 +14,7 @@ function isActive (activeList, itemId) {
     return activeList === itemId;
   }
 }
+
 module.exports.isActive = isActive;
 </wxs>
 
@@ -25,7 +26,7 @@ module.exports.isActive = isActive;
     <view
       wx:for="{{ items }}"
       wx:key="index"
-      class="van-ellipsis main-item-class {{ utils.bem('tree-select__nitem', { active: mainActiveIndex === index, disabled: item.disabled }) }} {{ mainActiveIndex === index ? 'main-active-class' : '' }} {{ item.disabled ? 'main-disabled-class' : '' }}"
+      class="van-ellipsis main-item-class {{ utils.bem('tree-select__nitem', { active: mainActiveIndex === index, disabled: item.disabled }) }} "
       data-index="{{ index }}"
       bind:tap="onClickNav"
     >
@@ -37,7 +38,7 @@ module.exports.isActive = isActive;
     scroll-y
     class="van-tree-select__content"
     style="height: {{ itemHeight }}px">
-    <swiper wx:if="{{ subItems.length > 5 }}" indicator-dots="imgUrls.length"
+    <swiper wx:if="{{ subItems.length > 6 }}" indicator-dots="imgUrls.length"
       autoplay="true" interval="5000" duration="1000" class="swi">
       <block wx:for="{{imgUrls}}">
         <swiper-item class= "swi">

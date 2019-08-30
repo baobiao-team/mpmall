@@ -61,8 +61,6 @@ export default {
         num: 1,
         thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/2f9a36046449dafb8608e99990b3c205.jpeg',
         tag:'食品类',
-
-
       }, {
         id: '2',
         title: '陕西蜜梨',
@@ -70,7 +68,6 @@ export default {
         price: '30.00',
         num: 1,
         tag:'食品类',
-
         thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/f6aabd6ac5521195e01e8e89ee9fc63f.jpeg'
       }, {
         id: '3',
@@ -79,7 +76,6 @@ export default {
         price:'50.00',
         num: 1,
         tag:'食品类',
-
         thumb: 'https://img.yzcdn.cn/public_files/2017/10/24/320454216bbe9e25c7651e1fa51b31fd.jpeg'
       }],
         result: [],

@@ -49,7 +49,12 @@
     },
     onLoad() {
       console.log("father onLoad:"+config.goodsWelfareItems);
-      this.dateParse();
+      //this.dateParse();
+      wx.showLoading({
+        title: '加载中',
+      });
+      this.getItems();
+
       let screenHeight = wx.getSystemInfoSync().windowHeight;
       this.changed = screenHeight;
       console.log("screenHeight:"+screenHeight);
@@ -103,6 +108,23 @@
       },
       computeScreen(){
         this.maxHigth = 600;
+      },
+      getItems(){
+        wx.request({
+          url: 'http://localhost:8080/type', //仅为示例，并非真实的接口地址
+          data: {
+            x: '',
+            y: ''
+          },
+          success (res) {
+            console.log(res.data);
+            wx.hideLoading();
+          },
+          fail (res){
+            console.log(res.data);
+            wx.hideLoading();
+          }
+        })
       }
     }
   }

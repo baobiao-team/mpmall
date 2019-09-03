@@ -57,17 +57,22 @@ VantComponent({
             const { item } = event.currentTarget.dataset;
             if (!item.disabled) {
                 this.$emit('clickItem', item);
-            }
+            };
+
         },
         // 当一个导航被点击时
         onClickNav(event) {
             console.log("onclickNav farther:"+JSON.stringify(event));
             const { index } = event.currentTarget.dataset;
-            console.log("onclickNav farther index:"+JSON.stringify({ index }));
             const item = this.data.items[index];
             if (!item.disabled) {
                 this.$emit('clickNav', { index });
-            }
+            };
+            console.log("aaa");
+          wx.showToast({
+            title: "loading",
+            icon: "loading"
+          });
         },
         // 更新子项列表
         updateSubItems() {

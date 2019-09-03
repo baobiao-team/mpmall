@@ -104,11 +104,18 @@
         //Toast('点击按钮');
       },
       toCart() {
-       let goods={"goodsName":this.goodsName,"imageUrl":this.images[0].url,"goodsPrice":this.goodsPrice}
+        let goods={"goodsName":this.goodsName,"imageUrl":this.images[0].url,"goodsPrice":this.goodsPrice}
+        try {
+          wx.setStorageSync("goods",goods)
+        } catch (e) { }
+        
+       
        console.log(JSON.stringify(goods))
-       const url = '../cart/main?goods='+JSON.stringify(goods)
+       const url = '../cart/main'
        console.log(url)
-       wx.switchTab({url})
+       wx.switchTab({
+         url: url
+       })
       },
        increment () {
        this.count++

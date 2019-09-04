@@ -55,11 +55,11 @@ module.exports.isActive = isActive;
     >
           <van-card
             num=""
-            price="{{ item.newprice }}"
-            origin-price="{{ item.oldprice }}"
-            desc="{{ item.dec1 }}"
-            title="{{ item.name }}"
-            thumb="{{ item.imageurl }}"
+            price="{{ item.proPrice }}"
+            origin-price="{{ item.proPrice }}"
+            desc="{{ item.proDisc }}"
+            title="{{ item.proName }}"
+            thumb="{{ item.proImg }}"
             >
           <div slot="tags">
             <van-tag wx:if="{{ item.tag }}" type="danger">{{ item.tag }}</van-tag>

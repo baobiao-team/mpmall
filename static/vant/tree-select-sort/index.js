@@ -40,6 +40,7 @@ VantComponent({
     },
     watch: {
         items() {
+            console.error("items change!")
             this.updateSubItems().then(() => {
                 this.updateMainHeight();
             });
@@ -69,19 +70,17 @@ VantComponent({
                 this.$emit('clickNav', { index });
             };
             console.log("aaa");
-          wx.showToast({
-            title: "loading",
-            icon: "loading"
-          });
+          // wx.showToast({
+          //   title: "loading",
+          //   icon: "loading"
+          // });
         },
         // 更新子项列表
         updateSubItems() {
             const { items, mainActiveIndex } = this.data;
             const { children = [] } = items[mainActiveIndex] || {};
             this.updateItemHeight(children);
-            // if(items[mainActiveIndex].imgs){
-            //    this.set({ imgUrls : items[mainActiveIndex].imgs});
-            // }
+            console.error("children:"+children.length)
             return this.set({ subItems: children });
         },
         // 更新组件整体高度，根据最大高度和当前组件需要展示的高度来决定

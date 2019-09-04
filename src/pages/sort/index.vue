@@ -53,11 +53,12 @@
       wx.showLoading({
         title: '加载中',
       });
-      this.getItems();
+      const that = this;
+      this.getAllPro(that);
 
       let screenHeight = wx.getSystemInfoSync().windowHeight;
       this.changed = screenHeight;
-      console.log("screenHeight:"+screenHeight);
+      
 
     },
     methods: {
@@ -109,16 +110,46 @@
       computeScreen(){
         this.maxHigth = 600;
       },
-      getItems(){
+      getItems(that,allList){
         wx.request({
-          url: 'http://localhost:8080/type', //仅为示例，并非真实的接口地址
+          url: 'http://localhost:8080/classify/type', //仅为示例，并非真实的接口地址
           data: {
             x: '',
             y: ''
           },
           success (res) {
+            console.log(JSON.stringify(res));
+
+            //this.items
+            that.items.push({"text":"全部","id":"000","children": allList,"imgs":that.imgs});
+            let templist = [];
+            res.data.forEach((object)=>{
+              that.items.push({"text":object.tpeName,"id":object.proType,"children": templist,"imgs":that.imgs});
+            })
+            console.log("that.items:"+JSON.stringify(that.items));
+            wx.hideLoading();
+          },
+          fail (res){
             console.log(res.data);
             wx.hideLoading();
+          }
+        })
+      },
+      getAllPro(that){
+        let allList = [];
+        wx.request({
+          url: 'http://localhost:8080/classify/000', //仅为示例，并非真实的接口地址
+          data: {
+            x: '',
+            y: ''
+          },
+          success (res) {
+            //console.log(JSON.stringify(res));
+            // res.data.forEach((object)=>{
+            //   allList.push(object);
+            // })
+            allList = res.data;
+            that.getItems(that,allList);
           },
           fail (res){
             console.log(res.data);

@@ -147,7 +147,7 @@
             console.log(JSON.stringify(res));
 
             //this.items
-            that.items.push({"text":"全部","id":"000","children": allList,"imgs":that.imgs});
+            that.items.push({"text":"全部","id":"","children": allList,"imgs":that.imgs});
             let templist = [];
             res.data.forEach((object)=>{
               that.items.push({"text":object.tpeName,"id":object.proType,"children": templist,"imgs":that.imgs});

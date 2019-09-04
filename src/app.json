@@ -42,5 +42,11 @@
       "selectedIconPath": "static/tabs/user-active.png"
     }],
     "position": "bottom"
-  }
+  },
+    "networkTimeout": {
+      "request": 1000000,
+      "connectSocket": 100000,
+      "uploadFile": 100000,
+      "downloadFile": 100000
+    }
 }

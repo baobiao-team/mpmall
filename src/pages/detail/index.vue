@@ -104,27 +104,67 @@
         //Toast('点击按钮');
       },
       toCart() {
-       let goods={"goodsName":this.goodsName,"imageUrl":this.images[0].url,"goodsPrice":this.goodsPrice}
+/*       let goods={"goodsName":this.goodsName,"imageUrl":this.images[0].url,"goodsPrice":this.goodsPrice}
        console.log(JSON.stringify(goods))
        const url = '../cart/main?goods='+JSON.stringify(goods)
        console.log(url)
-       wx.switchTab({url})
+       wx.switchTab({url}) */
       },
        increment () {
        this.count++
-     }
+     },
+  async getGoodsinfodata(that,id){
+       wx.request({
+            url: 'http://127.0.0.1:8081/proinfouser/'+id, //仅为示例，并非真实的接口地
+            method:"GET",
+            success (res) {
+                console.log(res.data.proId)
+               //  this.goodsName=null
+             // let arr = JSON.parse(res.data.toS)
+             // console.log(arr)
+             if(res.data.proType=='010'){
+               that.category='美妆'
+             }
+                that.goodsName=res.data.proName
+                that.images[0].url=res.data.proImg
+                that.images[1].url=res.data.proImg
+                that.goodsPrice=res.data.proPrice
+               // that.category=res.data.proType
+                that.describe=res.data.proDisc
+                that.value=res.data.proAddress+' | 快递0.00'
+               //that.goodsName=arr.goodsName
+              }
+
+               });
+
+   /*          this.goodsName=arr.name;
+             this.images[0].url=arr.imageurl;
+             this.images[1].url=arr.imageurl;
+             this.goodsPrice=arr.newprice;
+             this.category=arr.typeName;
+             this.describe=arr.dec1 */
+           }
     },
     onLoad(option) {
-        var that=this
-          let arr = JSON.parse(option.text)
-          // console.log(option.text)
-           this.goodsName=arr.name
+
+        let arr = JSON.parse(option.text)
+        console.log(option.text)
+        const that = this
+        this.getGoodsinfodata(that,arr.goodId)
+         /*    this.goodsName=arr.name
            this.images[0].url=arr.imageurl
            this.images[1].url=arr.imageurl
            this.goodsPrice=arr.newprice
            this.category=arr.typeName
-           this.describe=arr.dec1
-      }
+           this.describe=arr.dec1 */
+      },
+    mounted (option) {
+            //获取商品信息
+
+          // this.getGoodsinfodata();
+
+          }
+
   }
 </script>
 

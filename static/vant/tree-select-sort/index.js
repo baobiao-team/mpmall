@@ -40,7 +40,7 @@ VantComponent({
     },
     watch: {
         items() {
-            console.error("items change!")
+            console.error("items change!:"+this.data.items.length)
             this.updateSubItems().then(() => {
                 this.updateMainHeight();
             });
@@ -63,24 +63,21 @@ VantComponent({
         },
         // 当一个导航被点击时
         onClickNav(event) {
-            console.log("onclickNav farther:"+JSON.stringify(event));
+            console.log("onclickNav:"+JSON.stringify(event));
             const { index } = event.currentTarget.dataset;
             const item = this.data.items[index];
+            const proType = this.data.items[index].id;
+            console.log("proType:"+proType);
             if (!item.disabled) {
-                this.$emit('clickNav', { index });
+                this.$emit('clickNav', { index ,proType});
             };
-            console.log("aaa");
-          // wx.showToast({
-          //   title: "loading",
-          //   icon: "loading"
-          // });
         },
         // 更新子项列表
         updateSubItems() {
             const { items, mainActiveIndex } = this.data;
             const { children = [] } = items[mainActiveIndex] || {};
             this.updateItemHeight(children);
-            console.error("children:"+children.length)
+            console.error("children:"+children.length);
             return this.set({ subItems: children });
         },
         // 更新组件整体高度，根据最大高度和当前组件需要展示的高度来决定

@@ -58,7 +58,7 @@
 
       let screenHeight = wx.getSystemInfoSync().windowHeight;
       this.changed = screenHeight;
-      
+
 
     },
     methods: {
@@ -91,8 +91,14 @@
       },
       //左侧导航点击时，触发的事件
       onClickNav(event) {
-        console.log("onclickNav:"+JSON.stringify(event));
-        this.mainActiveIndex=event.mp.detail.index || 0
+        console.log("onclickNav farther:"+JSON.stringify(event));
+        this.mainActiveIndex=event.mp.detail.index || 0;
+        let proType = event.mp.detail.proType;
+        wx.showLoading({
+          title: '加载中',
+        });
+        const that = this;
+        this.getSubItems(that, proType);
       },
       //右侧选择项被点击时，会触发的事件
       //this.activeId从1开始，而不是从0开始！
@@ -107,16 +113,36 @@
            url: '/pages/detail/main?text='+JSON.stringify(this.data)
         });
       },
+      getSubItems(that, proType){
+        wx.request({
+          url: 'http://localhost:8081/user/proinfouser/findall', //仅为示例，并非真实的接口地址
+          data: {
+            proType: proType
+          },
+          success (res) {
+            console.log("that.items:"+that.items.length);
+            that.items.forEach((object)=>{
+              if(object.id == proType){
+                object.children = res.data;
+              }
+              //.push({"text":object.tpeName,"id":object.proType,"children": templist,"imgs":that.imgs});
+            })
+            console.log("that.items:"+JSON.stringify(that.items));
+
+            wx.hideLoading();
+          },
+          fail (res){
+            console.log(res.data);
+            wx.hideLoading();
+          }
+        })
+      },
       computeScreen(){
         this.maxHigth = 600;
       },
       getItems(that,allList){
         wx.request({
-          url: 'http://localhost:8080/classify/type', //仅为示例，并非真实的接口地址
-          data: {
-            x: '',
-            y: ''
-          },
+          url: 'http://localhost:8081/user/proinfouser/findprotype', //仅为示例，并非真实的接口地址
           success (res) {
             console.log(JSON.stringify(res));
 
@@ -138,13 +164,12 @@
       getAllPro(that){
         let allList = [];
         wx.request({
-          url: 'http://localhost:8080/classify/000', //仅为示例，并非真实的接口地址
+          url: 'http://localhost:8081/user/proinfouser/findall', //仅为示例，并非真实的接口地址
           data: {
-            x: '',
-            y: ''
+            proType: ''
           },
           success (res) {
-            //console.log(JSON.stringify(res));
+            console.log("allpro:"+JSON.stringify(res));
             // res.data.forEach((object)=>{
             //   allList.push(object);
             // })

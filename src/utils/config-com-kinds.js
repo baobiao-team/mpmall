@@ -12,7 +12,8 @@ export default {
           typeName: "美妆", // 商品分类名
           dec1:"14万评论 97%好评", // 商品描述
           dec2:"",  // 商品描述2
-          tag:"自营" //标签信息
+          tag:"自营" ,//标签信息
+          tag2:"买一送一" //标签信息
 	      },
 	      {
 	        goodId: 1,
@@ -203,7 +204,6 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 14,
       name: '微星（MSI）X570系列电竞游戏电脑主板（AMD X570/Socket AM4） X570-A PRO',
@@ -219,7 +219,6 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 15,
       name: '联想拯救者Y9000K 2019款酷睿i7 设计师游戏本17.3英寸144hz电竞屏高色域游戏笔记本 定制版：i7-9750 32G 1T固态+1T机械 RTX2060 6G独显',
@@ -235,7 +234,6 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 16,
       name: 'ikbc typemaster系列 X410 108键 单背光 短键程矮轴机械键盘',
@@ -251,7 +249,6 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 17,
       name: '朗科（Netac）512GB SSD固态硬盘 SATA3.0接口 超光N550S/一款非常适合升级的产品',
@@ -267,10 +264,9 @@ export default {
       tag: "自营",
       tag2: "优惠"
     },
-    ,
     {
       goodId: 18,
-      name: '坚果（JmGO）J9 投影仪家用 投影机（1080P真高清 远场AI语音 1850ANSI流明 动态交互体验 3D侧投 运动补偿）',
+      name: '坚果（JmGO）J9 投影仪家用 投影机',
       url: 'bill',
       imageurl: 'https://img20.360buyimg.com/babel/s320x320_jfs/t1/47427/19/4183/326737/5d1f2ab8Eb4abe0bf/3261e248751958b0.png',
       newprice: "10299.00",
@@ -278,6 +274,127 @@ export default {
       discount: "",
       type: "3",
       typeName: "数码电子",
+      dec1: "14万评论 97%好评",
+      dec2: "",
+      tag: "自营",
+      tag2: "优惠"
+    },
+    {
+      goodId: 19,
+      name: '坚果（JmGO）J9 投影仪家用 投影机',
+      url: 'bill',
+      imageurl: 'https://img20.360buyimg.com/babel/s320x320_jfs/t1/47427/19/4183/326737/5d1f2ab8Eb4abe0bf/3261e248751958b0.png',
+      newprice: "10299.00",
+      oldprice: "10999.00",
+      discount: "",
+      type: "4",
+      typeName: "奢侈品",
+      dec1: "14万评论 97%好评",
+      dec2: "",
+      tag: "自营",
+      tag2: "优惠"
+    },
+    {
+      goodId: 20,
+      name: '坚果（JmGO）J9 投影仪家用 投影机',
+      url: 'bill',
+      imageurl: 'https://img20.360buyimg.com/babel/s320x320_jfs/t1/47427/19/4183/326737/5d1f2ab8Eb4abe0bf/3261e248751958b0.png',
+      newprice: "10299.00",
+      oldprice: "10999.00",
+      discount: "",
+      type: "5",
+      typeName: "男装",
+      dec1: "14万评论 97%好评",
+      dec2: "",
+      tag: "自营",
+      tag2: "优惠"
+    },
+    {
+      goodId: 21,
+      name: '坚果（JmGO）J9 投影仪家用 投影机',
+      url: 'bill',
+      imageurl: 'https://img20.360buyimg.com/babel/s320x320_jfs/t1/47427/19/4183/326737/5d1f2ab8Eb4abe0bf/3261e248751958b0.png',
+      newprice: "10299.00",
+      oldprice: "10999.00",
+      discount: "",
+      type: "6",
+      typeName: "女装",
+      dec1: "14万评论 97%好评",
+      dec2: "",
+      tag: "自营",
+      tag2: "优惠"
+    },
+    {
+      goodId: 22,
+      name: '坚果（JmGO）J9 投影仪家用 投影机',
+      url: 'bill',
+      imageurl: 'https://img20.360buyimg.com/babel/s320x320_jfs/t1/47427/19/4183/326737/5d1f2ab8Eb4abe0bf/3261e248751958b0.png',
+      newprice: "10299.00",
+      oldprice: "10999.00",
+      discount: "",
+      type: "7",
+      typeName: "男鞋",
+      dec1: "14万评论 97%好评",
+      dec2: "",
+      tag: "自营",
+      tag2: "优惠"
+    },
+    {
+      goodId: 23,
+      name: '坚果（JmGO）J9 投影仪家用 投影机',
+      url: 'bill',
+      imageurl: 'https://img20.360buyimg.com/babel/s320x320_jfs/t1/47427/19/4183/326737/5d1f2ab8Eb4abe0bf/3261e248751958b0.png',
+      newprice: "10299.00",
+      oldprice: "10999.00",
+      discount: "",
+      type: "8",
+      typeName: "女鞋",
+      dec1: "14万评论 97%好评",
+      dec2: "",
+      tag: "自营",
+      tag2: "优惠"
+    }
+    ,
+    {
+      goodId: 24,
+      name: '坚果（JmGO）J9 投影仪家用 投影机',
+      url: 'bill',
+      imageurl: 'https://img20.360buyimg.com/babel/s320x320_jfs/t1/47427/19/4183/326737/5d1f2ab8Eb4abe0bf/3261e248751958b0.png',
+      newprice: "10299.00",
+      oldprice: "10999.00",
+      discount: "",
+      type: "9",
+      typeName: "内衣配饰",
+      dec1: "14万评论 97%好评",
+      dec2: "",
+      tag: "自营",
+      tag2: "优惠"
+    },
+    {
+      goodId: 25,
+      name: '坚果（JmGO）J9 投影仪家用 投影机',
+      url: 'bill',
+      imageurl: 'https://img20.360buyimg.com/babel/s320x320_jfs/t1/47427/19/4183/326737/5d1f2ab8Eb4abe0bf/3261e248751958b0.png',
+      newprice: "10299.00",
+      oldprice: "10999.00",
+      discount: "",
+      type: "10",
+      typeName: "个人清洁",
+      dec1: "14万评论 97%好评",
+      dec2: "",
+      tag: "自营",
+      tag2: "优惠"
+    },
+    {
+      goodId: 25,
+      name: '坚果（JmGO）J9 投影仪家用 投影机',
+      url: 'bill',
+      imageurl: 'https://img20.360buyimg.com/babel/s320x320_jfs/t1/47427/19/4183/326737/5d1f2ab8Eb4abe0bf/3261e248751958b0.png',
+      newprice: "10299.00",
+      oldprice: "10999.00",
+      discount: "",
+      type: "11",
+      typeName: "母婴童装",
       dec1: "14万评论 97%好评",
       dec2: "",
       tag: "自营",

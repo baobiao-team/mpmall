@@ -104,11 +104,19 @@
         //Toast('点击按钮');
       },
       toCart() {
-/*       let goods={"goodsName":this.goodsName,"imageUrl":this.images[0].url,"goodsPrice":this.goodsPrice}
+   let goods={"goodsName":this.goodsName,"imageUrl":this.images[0].url,"goodsPrice":this.goodsPrice}
+        try {
+          wx.setStorageSync("goods",goods)
+        } catch (e) { }
+
        console.log(JSON.stringify(goods))
-       const url = '../cart/main?goods='+JSON.stringify(goods)
+       const url = '../cart/main'
        console.log(url)
-       wx.switchTab({url}) */
+
+       wx.switchTab({
+         url: url
+       })
+
       },
        increment () {
        this.count++
@@ -132,17 +140,10 @@
                // that.category=res.data.proType
                 that.describe=res.data.proDisc
                 that.value=res.data.proAddress+' | 快递0.00'
-               //that.goodsName=arr.goodsName
               }
 
                });
 
-   /*          this.goodsName=arr.name;
-             this.images[0].url=arr.imageurl;
-             this.images[1].url=arr.imageurl;
-             this.goodsPrice=arr.newprice;
-             this.category=arr.typeName;
-             this.describe=arr.dec1 */
            }
     },
     onLoad(option) {
@@ -151,12 +152,6 @@
         console.log(option.text)
         const that = this
         this.getGoodsinfodata(that,arr.goodId)
-         /*    this.goodsName=arr.name
-           this.images[0].url=arr.imageurl
-           this.images[1].url=arr.imageurl
-           this.goodsPrice=arr.newprice
-           this.category=arr.typeName
-           this.describe=arr.dec1 */
       },
     mounted (option) {
             //获取商品信息

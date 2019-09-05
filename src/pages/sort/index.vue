@@ -49,10 +49,16 @@
     },
     onLoad() {
       console.log("father onLoad:"+config.goodsWelfareItems);
-      this.dateParse();
+      //this.dateParse();
+      wx.showLoading({
+        title: '加载中',
+      });
+      const that = this;
+      this.getAllPro(that);
+
       let screenHeight = wx.getSystemInfoSync().windowHeight;
       this.changed = screenHeight;
-      console.log("screenHeight:"+screenHeight);
+
 
     },
     methods: {
@@ -85,15 +91,20 @@
       },
       //左侧导航点击时，触发的事件
       onClickNav(event) {
-        console.log("onclickNav:"+JSON.stringify(event));
-        this.mainActiveIndex=event.mp.detail.index || 0
+        console.log("onclickNav farther:"+JSON.stringify(event));
+        this.mainActiveIndex=event.mp.detail.index || 0;
+        let proType = event.mp.detail.proType;
+        wx.showLoading({
+          title: '加载中',
+        });
+        const that = this;
+        this.getSubItems(that, proType);
       },
       //右侧选择项被点击时，会触发的事件
       //this.activeId从1开始，而不是从0开始！
       onClickItem(event) {
-        console.log("onClickItem:"+JSON.stringify(event));
+
         this.activeId=event.mp.detail.id;
-        //wx.navigateTo({url: this.pageUrls[this.activeId>0? this.activeId-1:this.activeId]});
 
         this.data = event.mp.detail;
         console.log(JSON.stringify(this.data));
@@ -102,8 +113,74 @@
            url: '/pages/detail/main?text='+JSON.stringify(this.data)
         });
       },
+      getSubItems(that, proType){
+        wx.request({
+          url: 'http://localhost:8081/user/proinfouser/findall', //仅为示例，并非真实的接口地址
+          data: {
+            proType: proType
+          },
+          success (res) {
+            console.log("that.items:"+that.items.length);
+            that.items.forEach((object)=>{
+              if(object.id == proType){
+                object.children = res.data;
+              }
+              //.push({"text":object.tpeName,"id":object.proType,"children": templist,"imgs":that.imgs});
+            })
+            console.log("that.items:"+JSON.stringify(that.items));
+
+            wx.hideLoading();
+          },
+          fail (res){
+            console.log(res.data);
+            wx.hideLoading();
+          }
+        })
+      },
       computeScreen(){
         this.maxHigth = 600;
+      },
+      getItems(that,allList){
+        wx.request({
+          url: 'http://localhost:8081/user/proinfouser/findprotype', //仅为示例，并非真实的接口地址
+          success (res) {
+            console.log(JSON.stringify(res));
+
+            //this.items
+            that.items.push({"text":"全部","id":"","children": allList,"imgs":that.imgs});
+            let templist = [];
+            res.data.forEach((object)=>{
+              that.items.push({"text":object.tpeName,"id":object.proType,"children": templist,"imgs":that.imgs});
+            })
+            console.log("that.items:"+JSON.stringify(that.items));
+            wx.hideLoading();
+          },
+          fail (res){
+            console.log(res.data);
+            wx.hideLoading();
+          }
+        })
+      },
+      getAllPro(that){
+        let allList = [];
+        wx.request({
+          url: 'http://localhost:8081/user/proinfouser/findall', //仅为示例，并非真实的接口地址
+          data: {
+            proType: ''
+          },
+          success (res) {
+            console.log("allpro:"+JSON.stringify(res));
+            // res.data.forEach((object)=>{
+            //   allList.push(object);
+            // })
+            allList = res.data;
+            that.getItems(that,allList);
+          },
+          fail (res){
+            console.log(res.data);
+            wx.hideLoading();
+          }
+        })
       }
     }
   }

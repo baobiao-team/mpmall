@@ -5,7 +5,7 @@
     "van-panel": "/static/vant/panel/index",
     "van-card": "/static/vant/tree-select-card/index",
     "van-tag": "/static/vant/tag/index",
-    "van-button": "/static/vant/button/index"
-
+    "van-button": "/static/vant/button/index",
+    "van-toast":"/static/vant/toast/index"
   }
 }

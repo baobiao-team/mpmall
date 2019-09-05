@@ -38,11 +38,11 @@ module.exports.isActive = isActive;
     scroll-y
     class="van-tree-select__content"
     style="height: {{ itemHeight }}px">
-    <swiper wx:if="{{ subItems.length > 6 }}" indicator-dots="imgUrls.length"
-      autoplay="true" interval="5000" duration="1000" class="swi">
+    <swiper wx:if="{{ subItems.length > 3 }}" indicator-dots="imgUrls.length"
+      autoplay="true" interval="5000" duration="1000" class="swi" style="height: {{viewHeight}}px;">
       <block wx:for="{{imgUrls}}">
-        <swiper-item class= "swi">
-          <image src="{{item}}" mode="widthFix" class="scale-down"/>
+        <swiper-item>
+          <image bindload="imageLoad" src="{{item}}" mode="widthFix" class="scale-down" style="width: {{swiperWidth}}px;"/>
         </swiper-item>
       </block>
     </swiper>
@@ -59,7 +59,7 @@ module.exports.isActive = isActive;
             origin-price="{{ item.proPrice }}"
             desc="{{ item.proDisc }}"
             title="{{ item.proName }}"
-            thumb="{{ item.proImg }}"
+            thumb="{{imageURL}}"
             >
           <div slot="tags">
             <van-tag wx:if="{{ item.tag }}" type="danger">{{ item.tag }}</van-tag>

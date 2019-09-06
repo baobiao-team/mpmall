@@ -122,8 +122,9 @@
                // that.goodsWelfareItems[i].imageurl=res.data[i].proImg
               that.goodsWelfareItems[i].goodName=res.data[i].proName
               that.goodsWelfareItems[i].oldprice=res.data[i].proPrice
-              that.goodsWelfareItems[i].newprice=Math.round(res.data[i].proPrice*0.88)
+              that.goodsWelfareItems[i].newprice=res.data[i].proPrice
               that.goodsWelfareItems[i].discount=res.data[i].proDisc
+              that.goodsWelfareItems[i].goodId=res.data[i].proId
             }
           }
         })

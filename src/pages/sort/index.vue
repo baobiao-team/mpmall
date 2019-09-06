@@ -5,6 +5,7 @@
       :main-active-index="mainActiveIndex"
       :active-id="activeId"
       :maxHeight="changed"
+      :swiperWidth = "imgWidth"
       @clickItem="onClickItem"
       @clickNav="onClickNav"
       content-item-class="content-item-class">
@@ -12,10 +13,12 @@
   </div>
 </template>
 
+
 <script>
   import card from '@/components/card'
   import config from '@/utils/config-com-kinds'
 
+  const PATH = 'http://47.92.111.175:8081/';
   export default {
     data () {
       return {
@@ -32,7 +35,8 @@
         imgs2:[
           'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
           'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
-        ]
+        ],
+        imgWidth:0
       }
     },
 
@@ -56,14 +60,15 @@
       const that = this;
       this.getAllPro(that);
 
-      let screenHeight = wx.getSystemInfoSync().windowHeight;
-      this.changed = screenHeight;
-
-
+      let winHeight = wx.getSystemInfoSync().windowHeight;
+      this.changed = winHeight;
+      let winWidth = wx.getSystemInfoSync().windowWidth;
+      this.imgWidth = winWidth * 0.75 - 6;
+      console.log("winWidth:"+winWidth);
+      console.log("imgWidth:"+this.imgWidth);
     },
     methods: {
       dateParse(){
-        console.log("aaaaa");
         var map = new Map();
         //首先找到所有分类
         config.goodsWelfareItems.forEach((item)=>{
@@ -103,19 +108,16 @@
       //右侧选择项被点击时，会触发的事件
       //this.activeId从1开始，而不是从0开始！
       onClickItem(event) {
-
         this.activeId=event.mp.detail.id;
-
         this.data = event.mp.detail;
         console.log(JSON.stringify(this.data));
-
         wx.navigateTo({
            url: '/pages/detail/main?text='+JSON.stringify(this.data)
         });
       },
       getSubItems(that, proType){
         wx.request({
-          url: 'http://localhost:8081/user/proinfouser/findall', //仅为示例，并非真实的接口地址
+          url: PATH+'user/proinfouser/search', //仅为示例，并非真实的接口地址
           data: {
             proType: proType
           },
@@ -128,12 +130,15 @@
               //.push({"text":object.tpeName,"id":object.proType,"children": templist,"imgs":that.imgs});
             })
             console.log("that.items:"+JSON.stringify(that.items));
-
             wx.hideLoading();
           },
           fail (res){
             console.log(res.data);
             wx.hideLoading();
+            wx.showToast({
+              title: '网络调用失败',
+              duration: 1000
+            })
           }
         })
       },
@@ -142,15 +147,15 @@
       },
       getItems(that,allList){
         wx.request({
-          url: 'http://localhost:8081/user/proinfouser/findprotype', //仅为示例，并非真实的接口地址
+          url: PATH+'/user/proinfouser/findprotype', //仅为示例，并非真实的接口地址
           success (res) {
-            console.log(JSON.stringify(res));
+            //console.log(JSON.stringify(res));
 
             //this.items
             that.items.push({"text":"全部","id":"","children": allList,"imgs":that.imgs});
             let templist = [];
             res.data.forEach((object)=>{
-              that.items.push({"text":object.tpeName,"id":object.proType,"children": templist,"imgs":that.imgs});
+              that.items.push({"text":object.typeName,"id":object.proType,"children": templist,"imgs":that.imgs});
             })
             console.log("that.items:"+JSON.stringify(that.items));
             wx.hideLoading();
@@ -164,7 +169,7 @@
       getAllPro(that){
         let allList = [];
         wx.request({
-          url: 'http://localhost:8081/user/proinfouser/findall', //仅为示例，并非真实的接口地址
+          url: PATH+'user/proinfouser/search', //仅为示例，并非真实的接口地址
           data: {
             proType: ''
           },
@@ -179,6 +184,10 @@
           fail (res){
             console.log(res.data);
             wx.hideLoading();
+            wx.showToast({
+              title: '网络调用失败',
+              duration: 1000
+            })
           }
         })
       }

@@ -83,4 +83,5 @@
 .scale-down {
   object-fit: scale-down;
   overflow:hidden;
+  border-radius:10px;
 }

@@ -21,6 +21,10 @@ VantComponent({
         maxHeight: {
             type: Number,
             value: 300
+        },
+        swiperWidth: {
+            type: Number,
+            value: 234
         }
     },
     data: {
@@ -29,18 +33,19 @@ VantComponent({
         itemHeight: 0,
         imgUrls: [
             'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
-            'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
+            'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg'
         ],
         indicatorDots: false,
         autoplay: false,
         interval: 5000,
         duration: 1000,
-        imageURL: 'https://img.yzcdn.cn/upload_files/2017/07/02/af5b9f44deaeb68000d7e4a711160c53.jpg',
-        itemSize: 0
+        imageURL: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/21/142/fb2960bf8e074d029c24315279289c19-5_218x274_70.jpg',
+        itemSize: 0,
+        viewHeight: 0
     },
     watch: {
         items() {
-            console.error("items change!:"+this.data.items.length)
+            //console.error("items change!:"+this.data.items.length)
             this.updateSubItems().then(() => {
                 this.updateMainHeight();
             });
@@ -59,7 +64,6 @@ VantComponent({
             if (!item.disabled) {
                 this.$emit('clickItem', item);
             };
-
         },
         // 当一个导航被点击时
         onClickNav(event) {
@@ -92,7 +96,8 @@ VantComponent({
         // 更新子项列表高度，根据可展示的最大高度和当前子项列表的高度决定
         updateItemHeight(subItems) {
             const itemHeight = Math.min(subItems.length * ITEM_HEIGHT,this.data.maxHeight);
-            return this.set({itemHeight:itemHeight});
+            //console.error("updateItemHeight itemHeight:"+this.data.maxHeight);
+            return this.set({itemHeight:this.data.maxHeight});
         },
         getSwiperHigth(){
           var titleHeight = 150;
@@ -103,6 +108,26 @@ VantComponent({
 
           }).exec();
           return titleHeight;
+        },
+        imageLoad(e){
+          //console.error("imageLoad:"+this.data.swiperWidth);
+          //this.set({ swiperHight: 94 });
+
+          let imgw = e.detail.width;
+          let imgh = e.detail.height;
+                //宽高比
+          let ratio = imgw / imgh;
+          console.log(imgw, imgh);
+          console.log("ratio:"+ratio);
+          // 计算的高度值
+          var viewHeight = this.data.swiperWidth / ratio;
+          // var imgheight = viewHeight;
+          // var imgheights = this.data.imgheights;
+          //把每一张图片的对应的高度记录到数组里
+          console.log('图片的高度：'+viewHeight)
+          this.setData({
+            viewHeight: viewHeight
+          })
         }
     }
 });

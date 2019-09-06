@@ -52,6 +52,11 @@
   word-break: break-all;
   display:block;
   white-space: pre-line;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /*第三行显示 ...*/
+  -webkit-box-orient: vertical;
 }
 
 .van-card__title {

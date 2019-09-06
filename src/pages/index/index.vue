@@ -22,7 +22,7 @@
    </van-tabs>
 
     <view>
-       <Swiper images = "images"/>
+       <Swiper/>
        <Scroll />
     </view>
 

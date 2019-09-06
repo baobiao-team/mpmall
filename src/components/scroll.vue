@@ -124,7 +124,7 @@
               that.goodsWelfareItems[i].oldprice=res.data[i].proPrice
               that.goodsWelfareItems[i].newprice=res.data[i].proPrice
               that.goodsWelfareItems[i].discount=res.data[i].proDisc
-              that.goodsWelfareItems[i].goodId=res.data[i].proId
+              that.goodsWelfareItems[i].proId=res.data[i].proId
             }
           }
         })
